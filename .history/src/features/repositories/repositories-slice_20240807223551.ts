@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { fetchPublicRepositories } from "@api/repositories-api";
+import { fetchPublicRepositories
 
 export type Repository = {
   id: number;

@@ -8,7 +8,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@store/*": ["store/*"],
-      "@features/*": ["features/*"],
+      "@features/*": ["features/*"]
       "@api/*": ["api/*"]
     },
     "strict": true,

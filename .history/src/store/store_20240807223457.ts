@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { repositoriesReducer } from "@features/repositories";
+import { repositoriesReducer } from "src/features/repositories";
 
 export const store = configureStore({
   reducer: {
