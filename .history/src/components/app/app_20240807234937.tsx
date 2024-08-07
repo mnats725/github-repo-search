@@ -20,7 +20,7 @@ export const App = () => {
 
   return (
     <div>
-      <RepositoryTable />
+      <RepositoryTable repositories=/>
     </div>
   );
 };

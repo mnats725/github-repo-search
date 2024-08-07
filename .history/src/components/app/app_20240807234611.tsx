@@ -20,6 +20,7 @@ export const App = () => {
 
   return (
     <div>
+      <div>123</div>
       <RepositoryTable />
     </div>
   );

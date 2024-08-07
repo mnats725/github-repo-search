@@ -1,12 +1,17 @@
 export type Repository = {
   id: number; // Уникальный идентификатор.
-  name: string; // Название репозитория.
-  language: string; // Язык программирования.
-  forks_count: number; // Количество форков.
-  stargazers_count: number; // Количество звезд.
-  updated_at: string; // Дата последнего обновления в формате ISO 8601.
-  description: string; // Описание репозитория.
 
+  name: string; // Название репозитория.
+
+  language: string; // Язык программирования.
+
+  forks_count: number; // Количество форков.
+
+  stargazers_count: number; // Количество звезд.
+
+  updated_at: string; // Дата последнего обновления в формате ISO 8601.
+
+  description: string; // Описание репозитория.
   // Лицензия.
   license: {
     name: string; // Название лицензии.

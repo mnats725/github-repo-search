@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getPublicRepositories } from "@api/repositories-api/repositories";
 
-import type { Repository, RepositoryQueryParams } from "@api/repositories-api/repositories/types";
+import type { Repository } from "@api/repositories-api/repositories/types";
 
 export type RepositoriesState = {
   repositories: Repository[];
@@ -14,11 +14,8 @@ const initialState: RepositoriesState = {
   status: "idle",
 };
 
-export const fetchRepositories = createAsyncThunk(
-  "repositories/fetchRepositories",
-  async (params: RepositoryQueryParams) => {
-    return getPublicRepositories(params);
-  }
+export const fetchRepositories = createAsyncThunk("repositories/fetchRepositories", async () =>
+  getPublicRepositories()
 );
 
 const repositoriesSlice = createSlice({

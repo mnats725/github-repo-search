@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { RepositoryTable } from "@components/ui/repository-table/repository-table";
+import {}
 
 import { fetchRepositories } from "@features/repositories/repositories-slice";
 
@@ -20,7 +20,7 @@ export const App = () => {
 
   return (
     <div>
-      <RepositoryTable />
+      <div>123</div>
     </div>
   );
 };

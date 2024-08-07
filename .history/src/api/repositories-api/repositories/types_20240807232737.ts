@@ -1,15 +1,22 @@
 export type Repository = {
-  id: number; // Уникальный идентификатор.
-  name: string; // Название репозитория.
-  language: string; // Язык программирования.
-  forks_count: number; // Количество форков.
-  stargazers_count: number; // Количество звезд.
-  updated_at: string; // Дата последнего обновления в формате ISO 8601.
-  description: string; // Описание репозитория.
-
+  // Уникальный идентификатор.
+  id: number;
+  // Название репозитория.
+  name: string;
+  // Язык программирования.
+  language: string;
+  // Количество форков.
+  forks_count: number;
+  // Количество звезд.
+  stargazers_count: number;
+  // Дата последнего обновления в формате ISO 8601.
+  updated_at: string;
+  // Описание репозитория.
+  description: string;
   // Лицензия.
   license: {
-    name: string; // Название лицензии.
+    // Название лицензии.
+    name: string;
   };
 };
 
@@ -23,6 +30,8 @@ export type RepositoryQueryParams = {
   sort?: "created" | "updated" | "comments"; // Поле для сортировки: "created", "updated" или "comments".
   direction?: "asc" | "desc"; // Направление сортировки: "asc" или "desc".
   since?: string; // Время последнего обновления в формате ISO 8601.
+
   per_page?: number; // Количество результатов на страницу (макс 100).
+
   page?: number; // Номер страницы.
 };

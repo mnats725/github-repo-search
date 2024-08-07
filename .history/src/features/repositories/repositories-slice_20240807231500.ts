@@ -16,9 +16,7 @@ const initialState: RepositoriesState = {
 
 export const fetchRepositories = createAsyncThunk(
   "repositories/fetchRepositories",
-  async (params: RepositoryQueryParams) => {
-    return getPublicRepositories(params);
-  }
+  async (params: RepositoryQueryParams = {}) => getPublicRepositories(params)
 );
 
 const repositoriesSlice = createSlice({
