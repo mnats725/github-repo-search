@@ -4,14 +4,12 @@
     "module": "esnext", // или 'es2020',
     "jsx": "react-jsx", // Указывает поддержку JSX
     "moduleResolution": "node",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
       "@components/*": ["components/*"],
       "@store/*": ["store/*"],
       "@features/*": ["features/*"],
-      "@api/*": ["api/*"],
-      "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      "@api/*": ["api/*"]
     },
     "strict": true,
     "esModuleInterop": true,

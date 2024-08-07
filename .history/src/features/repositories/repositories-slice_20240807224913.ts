@@ -15,7 +15,7 @@ const initialState: RepositoriesState = {
 };
 
 export const fetchRepositories = createAsyncThunk("repositories/fetchRepositories", async () => {
-  return await getPublicRepositories();
+  return await fetchPublicRepositories();
 });
 
 const repositoriesSlice = createSlice({

@@ -10,8 +10,7 @@
       "@store/*": ["store/*"],
       "@features/*": ["features/*"],
       "@api/*": ["api/*"],
-      "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      ""
     },
     "strict": true,
     "esModuleInterop": true,

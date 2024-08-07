@@ -10,8 +10,3 @@ export const repositoryClient = axios.create({
     "Content-Type": "application/json",
   },
 });
-
-repositoryClient.interceptors.response.use(
-  (response) => response,
-  (error) => extractMessageOnErrorResponse(error)
-);

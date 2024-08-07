@@ -12,3 +12,9 @@ export const fetchPublicRepositories = async () => {
     throw new Error("Failed to fetch public repositories");
   }
 };
+
+export const getPublicRepositories = async (courseUuid: string): Promise<LessonModules> => {
+  const { data } = await cesClient.get<Lesson[]>(`${CES_ROUTES.lessons}/${courseUuid}`);
+
+  return;
+};

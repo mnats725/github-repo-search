@@ -9,9 +9,7 @@
       "@components/*": ["components/*"],
       "@store/*": ["store/*"],
       "@features/*": ["features/*"],
-      "@api/*": ["api/*"],
-      "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      "@api/*": ["api/*"]
     },
     "strict": true,
     "esModuleInterop": true,
