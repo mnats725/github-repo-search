@@ -2,21 +2,26 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getPublicRepositories } from "@api/repositories-api/repositories";
 
-import type { Repository } from "@api/repositories-api/repositories/types";
+import type { Repository, RepositoryQueryParams, RepositoryResponse } from "@api/repositories-api/repositories/types";
 
 export type RepositoriesState = {
-  repositories: Repository[];
+  items: Repository[]; // Обновлено на `items`.
   status: "idle" | "loading" | "failed";
 };
 
 const initialState: RepositoriesState = {
-  repositories: [],
+  items: [], // Обновлено на `items`.
   status: "idle",
 };
 
-export const fetchRepositories = createAsyncThunk("repositories/fetchRepositories", async () => {
-  return await getPublicRepositories();
-});
+export const getRepositoriesThunk = createAsyncThunk(
+  "repositories/fetchRepositories",
+  async (params: RepositoryQueryParams) => {
+    const response: RepositoryResponse = await getPublicRepositories(params);
+
+    return response.items;
+  }
+);
 
 const repositoriesSlice = createSlice({
   name: "repositories",
@@ -24,14 +29,14 @@ const repositoriesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRepositories.pending, (state) => {
+      .addCase(getRepositoriesThunk.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchRepositories.fulfilled, (state, action) => {
+      .addCase(getRepositoriesThunk.fulfilled, (state, action) => {
         state.status = "idle";
-        state.repositories = action.payload;
+        state.items = action.payload; // Обновляем `items`.
       })
-      .addCase(fetchRepositories.rejected, (state) => {
+      .addCase(getRepositoriesThunk.rejected, (state) => {
         state.status = "failed";
       });
   },

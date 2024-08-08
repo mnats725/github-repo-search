@@ -1,24 +1,11 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { fetchRepositories } from "@features/repositories/repositories-slice";
+import { RepositoriesPage } from "@components/views/repositories-page";
 
-import type { RootState, AppDispatch } from "@store/store";
-
-export const App = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const repositories = useSelector((state: RootState) => state.repositories.repositories);
-  const status = useSelector((state: RootState) => state.repositories.status);
-
-  useEffect(() => {
-    dispatch(fetchRepositories());
-  }, [dispatch]);
-
-  console.log(repositories, status);
-
-  return (
-    <div>
-      <div>123</div>
-    </div>
-  );
-};
+export const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<RepositoriesPage />} />
+    </Routes>
+  </Router>
+);
