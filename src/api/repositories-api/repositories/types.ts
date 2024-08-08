@@ -1,16 +1,23 @@
 export type Repository = {
   id: number; // Уникальный идентификатор.
   name: string; // Название репозитория.
-  language: string; // Язык программирования.
+  full_name: string; // Полное имя репозитория.
+  private: boolean; // Приватный ли репозиторий.
+  html_url: string; // URL страницы репозитория на GitHub.
+  description: string | null; // Описание репозитория.
+  language: string | null; // Язык программирования.
   forks_count: number; // Количество форков.
   stargazers_count: number; // Количество звезд.
+  watchers_count: number; // Количество наблюдателей.
+  open_issues_count: number; // Количество открытых проблем.
+  created_at: string; // Дата создания в формате ISO 8601.
   updated_at: string; // Дата последнего обновления в формате ISO 8601.
-  description: string; // Описание репозитория.
-
-  // Лицензия.
+  pushed_at: string; // Дата последнего коммита в формате ISO 8601.
+  default_branch: string; // Имя основной ветки.
   license: {
     name: string; // Название лицензии.
   };
+  topics: string[]; // Темы, связанные с репозиторием.
 };
 
 export type RepositoryResponse = {

@@ -13,6 +13,8 @@ import {
 import { TableHeader } from "./table-header";
 import { TableDetails } from "./table-details";
 
+import { getComparator } from "@lib/get-сomparator.util";
+
 import type { Repository } from "@api/repositories-api/repositories/types";
 import type { MouseEvent, ChangeEvent, FC } from "react";
 
@@ -42,26 +44,6 @@ export const Table: FC<TableProps> = ({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedRepo, setSelectedRepo] = useState<Repository | null>(null);
 
-  const getComparator = (order: "asc" | "desc", orderBy: keyof Repository) => {
-    return (a: Repository, b: Repository) => {
-      if (typeof a[orderBy] === "string" && typeof b[orderBy] === "string") {
-        return order === "asc" ? a[orderBy].localeCompare(b[orderBy]) : b[orderBy].localeCompare(a[orderBy]);
-      }
-
-      if (typeof a[orderBy] === "number" && typeof b[orderBy] === "number") {
-        return order === "asc" ? a[orderBy] - b[orderBy] : b[orderBy] - a[orderBy];
-      }
-
-      if (orderBy === "updated_at") {
-        const dateA = new Date(a[orderBy]).getTime();
-        const dateB = new Date(b[orderBy]).getTime();
-        return order === "asc" ? dateA - dateB : dateB - dateA;
-      }
-
-      return 0;
-    };
-  };
-
   const handleRowClick = (repo: Repository) => {
     setSelectedRepo(repo);
     setDrawerOpen(true);
@@ -84,11 +66,13 @@ export const Table: FC<TableProps> = ({
             <TableBody>
               {paginatedRows.map((row) => (
                 <TableRow hover key={row.id} onClick={() => handleRowClick(row)}>
-                  <TableCell>{row.name || "N/A"}</TableCell>
-                  <TableCell>{row.language || "N/A"}</TableCell>
-                  <TableCell>{row.forks_count || "N/A"}</TableCell>
-                  <TableCell>{row.stargazers_count || "N/A"}</TableCell>
-                  <TableCell>{row.updated_at ? new Date(row.updated_at).toLocaleDateString() : "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.name || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.language || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.forks_count || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.stargazers_count || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>
+                    {row.updated_at ? new Date(row.updated_at).toLocaleDateString() : "N/A"}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

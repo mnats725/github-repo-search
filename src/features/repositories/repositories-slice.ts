@@ -2,16 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getPublicRepositories } from "@api/repositories-api/repositories";
 
+import { RepositoriesStatuses } from "../../types/enums/repositories-statuses.enum";
+
 import type { Repository, RepositoryQueryParams, RepositoryResponse } from "@api/repositories-api/repositories/types";
 
 export type RepositoriesState = {
-  items: Repository[];
-  status: "idle" | "loading" | "failed";
+  items: Repository[]; // Список репозиториев, полученных из API.
+  status: RepositoriesStatuses; // Текущий статус загрузки репозиториев (например, загрузка, ошибка, завершено и т.д.).
 };
 
 const initialState: RepositoriesState = {
-  items: [],
-  status: "idle",
+  items: [], // Изначально список репозиториев пуст.
+  status: RepositoriesStatuses.IDLE, // Изначально статус загрузки установлен в "IDLE".
 };
 
 export const getRepositoriesThunk = createAsyncThunk(
@@ -30,14 +32,14 @@ const repositoriesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getRepositoriesThunk.pending, (state) => {
-        state.status = "loading";
+        state.status = RepositoriesStatuses.LOADING;
       })
       .addCase(getRepositoriesThunk.fulfilled, (state, action) => {
-        state.status = "idle";
+        state.status = RepositoriesStatuses.IDLE;
         state.items = action.payload;
       })
       .addCase(getRepositoriesThunk.rejected, (state) => {
-        state.status = "failed";
+        state.status = RepositoriesStatuses.FAILED;
       });
   },
 });
