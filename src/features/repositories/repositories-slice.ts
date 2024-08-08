@@ -14,7 +14,7 @@ const initialState: RepositoriesState = {
   status: "idle",
 };
 
-export const fetchRepositories = createAsyncThunk(
+export const getRepositoriesThunk = createAsyncThunk(
   "repositories/fetchRepositories",
   async (params: RepositoryQueryParams) => {
     return getPublicRepositories(params);
@@ -27,14 +27,14 @@ const repositoriesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRepositories.pending, (state) => {
+      .addCase(getRepositoriesThunk.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchRepositories.fulfilled, (state, action) => {
+      .addCase(getRepositoriesThunk.fulfilled, (state, action) => {
         state.status = "idle";
         state.repositories = action.payload;
       })
-      .addCase(fetchRepositories.rejected, (state) => {
+      .addCase(getRepositoriesThunk.rejected, (state) => {
         state.status = "failed";
       });
   },
