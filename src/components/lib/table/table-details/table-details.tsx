@@ -48,11 +48,15 @@ export const TableDetails: FC<RepositoryDetailsProps> = ({ drawerOpen, setDrawer
               </Typography>
               <Paper elevation={3} sx={{ padding: 2, marginTop: 2, backgroundColor: "#f5f5f5" }}>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
-                  <strong>Лицензия:</strong> {selectedRepo?.license?.name || "Не указана"}
+                  <strong>Лицензия: </strong>
+                  {selectedRepo?.license?.name ? `${selectedRepo.license.name} ✅` : "Не указана"}
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
-                  <strong>Язык:</strong>{" "}
+                  <strong>Язык: </strong>
                   <span style={{ color: "#007bff" }}>{selectedRepo?.language || "Не указан"}</span>
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
+                  <strong>Звёзды:</strong> {selectedRepo?.stargazers_count ?? "Не указано"} ⭐
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
                   <strong>Форки:</strong> {selectedRepo?.forks_count ?? "Не указано"}
@@ -61,26 +65,30 @@ export const TableDetails: FC<RepositoryDetailsProps> = ({ drawerOpen, setDrawer
                   <strong>Наблюдатели:</strong> {selectedRepo?.watchers_count ?? "Не указано"}
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
-                  <strong>Дата создания:</strong>{" "}
+                  <strong>Дата создания: </strong>
                   {selectedRepo?.created_at ? new Date(selectedRepo.created_at).toLocaleDateString() : "Не указана"}
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
-                  <strong>Дата обновления:</strong>{" "}
+                  <strong>Дата обновления: </strong>
                   {selectedRepo?.updated_at ? new Date(selectedRepo.updated_at).toLocaleDateString() : "Не указана"}
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
-                  <strong>Последнее изменение:</strong>{" "}
+                  <strong>Последнее изменение: </strong>
                   {selectedRepo?.pushed_at ? new Date(selectedRepo.pushed_at).toLocaleDateString() : "Не указана"}
                 </Typography>
               </Paper>
               <Paper elevation={3} sx={{ padding: 2, marginTop: 2, backgroundColor: "#f5f5f5" }}>
-                <Typography variant="subtitle1" sx={{ fontSize: "16px", color: "#007bff" }}>
-                  URL репозитория:
+                <Typography
+                  variant="subtitle1"
+                  sx={{ fontSize: "16px", color: "#007bff", display: "flex", alignItems: "center" }}
+                >
+                  <strong>URL:</strong>
                   <Link
                     href={selectedRepo?.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
+                      marginLeft: 1,
                       display: "inline-block",
                       maxWidth: "100%",
                       overflow: "hidden",
