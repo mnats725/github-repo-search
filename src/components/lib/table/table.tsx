@@ -68,6 +68,8 @@ export const Table: FC<TableProps> = ({
     onRowClick(repo.id);
   };
 
+  console.log({ selectedRepo });
+
   const sortedRows = [...rows].sort(getComparator(order, orderBy));
 
   const paginatedRows = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
