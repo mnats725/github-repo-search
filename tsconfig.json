@@ -11,7 +11,8 @@
       "@features/*": ["features/*"],
       "@api/*": ["api/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@__mocks__/*": ["__mocks__/*"]
     },
     "strict": true,
     "esModuleInterop": true,

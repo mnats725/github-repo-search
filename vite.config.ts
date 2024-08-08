@@ -12,6 +12,7 @@ export default defineConfig({
       "@store": resolve(__dirname, "src/store"),
       "@utils": resolve(__dirname, "src/utils"),
       "@types": resolve(__dirname, "src/types/"),
+      "@__mocks__": resolve(__dirname, "src/__mocks__"),
     },
   },
 });
