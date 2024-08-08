@@ -22,7 +22,7 @@ export const TableDetails: FC<RepositoryDetailsProps> = ({ drawerOpen, setDrawer
       >
         <IconButton onClick={() => setDrawerOpen(false)}>❌</IconButton>
         <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: "20px", marginBottom: 1, mt: 1 }}>
-          Детали репозитория
+          Информация о репозитории
         </Typography>
       </Box>
       <ConditionalRender conditions={[!!selectedRepo]}>
