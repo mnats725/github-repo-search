@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 export type ConditionalRenderProps = {
-  conditions: boolean[];
-  children: ReactNode;
+  conditions: boolean[]; // Список условий, которые должны быть выполнены для отображения детей.
+  children: ReactNode; // Содержимое, которое будет отображаться, если все условия выполнены.
 };
 
 export const ConditionalRender = ({ conditions, children }: ConditionalRenderProps) => {

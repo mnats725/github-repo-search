@@ -7,13 +7,13 @@ import { RepositoriesStatuses } from "../../types/enums/repositories-statuses.en
 import type { Repository, RepositoryQueryParams, RepositoryResponse } from "@api/repositories-api/repositories/types";
 
 export type RepositoriesState = {
-  items: Repository[];
-  status: RepositoriesStatuses;
+  items: Repository[]; // Список репозиториев, полученных из API.
+  status: RepositoriesStatuses; // Текущий статус загрузки репозиториев (например, загрузка, ошибка, завершено и т.д.).
 };
 
 const initialState: RepositoriesState = {
-  items: [],
-  status: RepositoriesStatuses.IDLE,
+  items: [], // Изначально список репозиториев пуст.
+  status: RepositoriesStatuses.IDLE, // Изначально статус загрузки установлен в "IDLE".
 };
 
 export const getRepositoriesThunk = createAsyncThunk(
