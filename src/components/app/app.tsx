@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { RepositoryTable } from "@components/ui/repository-table/repository-table";
 
-import { fetchRepositories } from "@features/repositories/repositories-slice";
+import { getRepositoriesThunk } from "@features/repositories/repositories-slice";
 
 import type { RootState, AppDispatch } from "@store/store";
 
@@ -13,7 +13,7 @@ export const App = () => {
   const status = useSelector((state: RootState) => state.repositories.status);
 
   useEffect(() => {
-    dispatch(fetchRepositories({}));
+    dispatch(getRepositoriesThunk({}));
   }, [dispatch]);
 
   console.log(repositories, status);
