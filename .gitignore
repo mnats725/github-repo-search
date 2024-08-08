@@ -26,7 +26,3 @@ dist-ssr
 .history
 
 .env
-
-coverage
-storybook-static
-__screenshots__
