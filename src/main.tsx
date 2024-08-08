@@ -6,6 +6,8 @@ import { App } from "./components/app";
 
 import { store } from "@store/store";
 
+import "./styles/reset.css";
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>

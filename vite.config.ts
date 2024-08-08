@@ -13,6 +13,7 @@ export default defineConfig({
       "@utils": resolve(__dirname, "src/utils"),
       "@types": resolve(__dirname, "src/types/"),
       "@__mocks__": resolve(__dirname, "src/__mocks__"),
+      "@styles": resolve(__dirname, "src/styles"),
     },
   },
 });

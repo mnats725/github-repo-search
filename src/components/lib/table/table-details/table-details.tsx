@@ -23,32 +23,29 @@ export const TableDetails: FC<RepositoryDetailsProps> = ({ drawerOpen, setDrawer
         <>
           <Grid container spacing={2}>
             <Grid item xs={8}>
-              <Typography variant="h6">{selectedRepo?.name}</Typography>
+              <Typography variant="h6">{selectedRepo?.name || "N/A"}</Typography>
             </Grid>
             <Grid item xs={4} sx={{ textAlign: "right" }}>
-              <Typography variant="subtitle1">⭐ {selectedRepo?.stargazers_count}</Typography>
+              <Typography variant="subtitle1">⭐ {selectedRepo?.stargazers_count ?? "N/A"}</Typography>
             </Grid>
           </Grid>
           <Box sx={{ marginTop: 2 }}>
             <Typography variant="body1" gutterBottom>
-              <strong>Description:</strong> {selectedRepo?.description}
+              <strong>Description:</strong> {selectedRepo?.description || "N/A"}
             </Typography>
             <Paper elevation={3} sx={{ padding: 2, marginTop: 2, backgroundColor: "#f5f5f5" }}>
               <Typography variant="body1" gutterBottom>
-                <strong>License:</strong> {selectedRepo?.license.name}
+                <strong>License:</strong> {selectedRepo?.license?.name || "N/A"}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <strong>Language:</strong> {selectedRepo?.language}
+                <strong>Language:</strong> {selectedRepo?.language || "N/A"}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <strong>Forks:</strong> {selectedRepo?.forks_count}
+                <strong>Forks:</strong> {selectedRepo?.forks_count ?? "N/A"}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 <strong>Last Updated:</strong>
-                <ConditionalRender conditions={[!!selectedRepo?.updated_at]}>
-                  {new Date(selectedRepo?.updated_at || "").toLocaleDateString()}
-                </ConditionalRender>
-                <ConditionalRender conditions={[!selectedRepo?.updated_at]}>N/A</ConditionalRender>
+                {selectedRepo?.updated_at ? new Date(selectedRepo.updated_at).toLocaleDateString() : "N/A"}
               </Typography>
             </Paper>
           </Box>

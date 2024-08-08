@@ -1,33 +1,20 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Table as MuiTable,
   TableBody,
-  TableCell,
   TableContainer,
-  TableHead,
-  TableRow,
-  TableSortLabel,
   TablePagination,
   Paper,
   Box,
+  TableRow,
+  TableCell,
 } from "@mui/material";
-import { visuallyHidden } from "@mui/utils";
 
+import { TableHeader } from "./table-header";
 import { TableDetails } from "./table-details";
-import { ConditionalRender } from "../conditional-render";
 
+import type { Repository } from "@api/repositories-api/repositories/types";
 import type { MouseEvent, ChangeEvent, FC } from "react";
-
-type Repository = {
-  id: number;
-  name: string;
-  language: string;
-  forks_count: number;
-  stargazers_count: number;
-  updated_at: string;
-  description: string;
-  license: { name: string };
-};
 
 type TableProps = {
   rows: Repository[];
@@ -42,7 +29,7 @@ type TableProps = {
 };
 
 export const Table: FC<TableProps> = ({
-  rows,
+  rows = [],
   order,
   orderBy,
   page,
@@ -86,86 +73,29 @@ export const Table: FC<TableProps> = ({
   const paginatedRows = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <Paper sx={{ display: "flex" }}>
-      <Box sx={{ flex: 1, overflow: "auto" }}>
-        <TableContainer>
+    <Paper sx={{ display: "flex", flexDirection: "column", height: "92vh" }}>
+      <Box sx={{ flex: 1, overflow: "hidden" }}>
+        <TableContainer
+          component={Paper}
+          sx={{ height: "86vh", overflowY: "auto", display: "flex", justifyContent: "space-between" }}
+        >
           <MuiTable>
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <TableSortLabel
-                    active={orderBy === "name"}
-                    direction={orderBy === "name" ? order : "asc"}
-                    onClick={() => onRequestSort("name")}
-                  >
-                    Название
-                    <ConditionalRender conditions={[orderBy === "name"]}>
-                      <Box component="span" sx={visuallyHidden}>
-                        {order === "desc" ? "sorted descending" : "sorted ascending"}
-                      </Box>
-                    </ConditionalRender>
-                  </TableSortLabel>
-                </TableCell>
-                <TableCell>Язык</TableCell>
-                <TableCell>
-                  <TableSortLabel
-                    active={orderBy === "forks_count"}
-                    direction={orderBy === "forks_count" ? order : "asc"}
-                    onClick={() => onRequestSort("forks_count")}
-                  >
-                    Число форков
-                    <ConditionalRender conditions={[orderBy === "forks_count"]}>
-                      <Box component="span" sx={visuallyHidden}>
-                        {order === "desc" ? "sorted descending" : "sorted ascending"}
-                      </Box>
-                    </ConditionalRender>
-                  </TableSortLabel>
-                </TableCell>
-                <TableCell>
-                  <TableSortLabel
-                    active={orderBy === "stargazers_count"}
-                    direction={orderBy === "stargazers_count" ? order : "asc"}
-                    onClick={() => onRequestSort("stargazers_count")}
-                  >
-                    Число звёзд
-                    <ConditionalRender conditions={[orderBy === "stargazers_count"]}>
-                      <Box component="span" sx={visuallyHidden}>
-                        {order === "desc" ? "sorted descending" : "sorted ascending"}
-                      </Box>
-                    </ConditionalRender>
-                  </TableSortLabel>
-                </TableCell>
-                <TableCell>
-                  <TableSortLabel
-                    active={orderBy === "updated_at"}
-                    direction={orderBy === "updated_at" ? order : "asc"}
-                    onClick={() => onRequestSort("updated_at")}
-                  >
-                    Дата обновления
-                    <ConditionalRender conditions={[orderBy === "updated_at"]}>
-                      <Box component="span" sx={visuallyHidden}>
-                        {order === "desc" ? "sorted descending" : "sorted ascending"}
-                      </Box>
-                    </ConditionalRender>
-                  </TableSortLabel>
-                </TableCell>
-              </TableRow>
-            </TableHead>
+            <TableHeader order={order} orderBy={orderBy} onRequestSort={onRequestSort} />
             <TableBody>
               {paginatedRows.map((row) => (
                 <TableRow hover key={row.id} onClick={() => handleRowClick(row)}>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.language}</TableCell>
-                  <TableCell>{row.forks_count}</TableCell>
-                  <TableCell>{row.stargazers_count}</TableCell>
-                  <TableCell>{new Date(row.updated_at).toLocaleDateString()}</TableCell>
+                  <TableCell>{row.name || "N/A"}</TableCell>
+                  <TableCell>{row.language || "N/A"}</TableCell>
+                  <TableCell>{row.forks_count || "N/A"}</TableCell>
+                  <TableCell>{row.stargazers_count || "N/A"}</TableCell>
+                  <TableCell>{row.updated_at ? new Date(row.updated_at).toLocaleDateString() : "N/A"}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </MuiTable>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10, 20, 30]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
