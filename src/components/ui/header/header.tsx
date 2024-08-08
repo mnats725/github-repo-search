@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AppBar, Toolbar, InputBase, Button, Box } from "@mui/material";
+import { AppBar, Toolbar, InputBase, Button, Box, Typography } from "@mui/material";
 
 type HeaderProps = {
   onSearch: (query: string) => void;
@@ -28,6 +28,7 @@ export const Header = ({ onSearch }: HeaderProps) => {
           sx={{
             display: "flex",
             gap: "8px",
+            alignItems: "center",
           }}
         >
           <InputBase
@@ -48,12 +49,16 @@ export const Header = ({ onSearch }: HeaderProps) => {
             variant="contained"
             sx={{
               color: "#ffffff",
-              width: "105px",
+              width: "130px",
               height: "42px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
             }}
             onClick={handleSearch}
           >
-            Искать
+            <Typography sx={{ display: "flex", alignItems: "center" }}> Искать🔍</Typography>
           </Button>
         </Box>
       </Toolbar>

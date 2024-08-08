@@ -20,11 +20,12 @@ export const TableHeader: FC<RepositoryTableHeadProps> = ({ order, orderBy, onRe
   return (
     <TableHead sx={{ position: "sticky", top: 0, zIndex: 1, backgroundColor: "#f2f2f2" }}>
       <TableRow>
-        <TableCell>
+        <TableCell sx={{ fontWeight: "bold", fontSize: "18px" }}>
           <TableSortLabel
             active={orderBy === "name"}
             direction={orderBy === "name" ? order : "asc"}
             onClick={createSortHandler("name")}
+            sx={{ fontWeight: "bold", fontSize: "18px" }}
           >
             Название
             <ConditionalRender conditions={[orderBy === "name"]}>
@@ -34,12 +35,13 @@ export const TableHeader: FC<RepositoryTableHeadProps> = ({ order, orderBy, onRe
             </ConditionalRender>
           </TableSortLabel>
         </TableCell>
-        <TableCell>Язык</TableCell>
-        <TableCell>
+        <TableCell sx={{ fontWeight: "bold", fontSize: "18px" }}>Язык</TableCell>
+        <TableCell sx={{ fontWeight: "bold", fontSize: "18px" }}>
           <TableSortLabel
             active={orderBy === "forks_count"}
             direction={orderBy === "forks_count" ? order : "asc"}
             onClick={createSortHandler("forks_count")}
+            sx={{ fontWeight: "bold", fontSize: "18px" }}
           >
             Число форков
             <ConditionalRender conditions={[orderBy === "forks_count"]}>
@@ -49,11 +51,12 @@ export const TableHeader: FC<RepositoryTableHeadProps> = ({ order, orderBy, onRe
             </ConditionalRender>
           </TableSortLabel>
         </TableCell>
-        <TableCell>
+        <TableCell sx={{ fontWeight: "bold", fontSize: "18px" }}>
           <TableSortLabel
             active={orderBy === "stargazers_count"}
             direction={orderBy === "stargazers_count" ? order : "asc"}
             onClick={createSortHandler("stargazers_count")}
+            sx={{ fontWeight: "bold", fontSize: "18px" }}
           >
             Число звёзд
             <ConditionalRender conditions={[orderBy === "stargazers_count"]}>
@@ -63,11 +66,12 @@ export const TableHeader: FC<RepositoryTableHeadProps> = ({ order, orderBy, onRe
             </ConditionalRender>
           </TableSortLabel>
         </TableCell>
-        <TableCell>
+        <TableCell sx={{ fontWeight: "bold", fontSize: "18px" }}>
           <TableSortLabel
             active={orderBy === "updated_at"}
             direction={orderBy === "updated_at" ? order : "asc"}
             onClick={createSortHandler("updated_at")}
+            sx={{ fontWeight: "bold", fontSize: "18px" }}
           >
             Дата обновления
             <ConditionalRender conditions={[orderBy === "updated_at"]}>

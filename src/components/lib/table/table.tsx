@@ -84,11 +84,13 @@ export const Table: FC<TableProps> = ({
             <TableBody>
               {paginatedRows.map((row) => (
                 <TableRow hover key={row.id} onClick={() => handleRowClick(row)}>
-                  <TableCell>{row.name || "N/A"}</TableCell>
-                  <TableCell>{row.language || "N/A"}</TableCell>
-                  <TableCell>{row.forks_count || "N/A"}</TableCell>
-                  <TableCell>{row.stargazers_count || "N/A"}</TableCell>
-                  <TableCell>{row.updated_at ? new Date(row.updated_at).toLocaleDateString() : "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.name || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.language || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.forks_count || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.stargazers_count || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>
+                    {row.updated_at ? new Date(row.updated_at).toLocaleDateString() : "N/A"}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
