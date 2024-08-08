@@ -10,10 +10,10 @@ export default defineConfig({
       "@components": resolve(__dirname, "src/components"),
       "@api": resolve(__dirname, "src/api"),
       "@store": resolve(__dirname, "src/store"),
-      "@utils": resolve(__dirname, "src/utils"),
+      "@lib": resolve(__dirname, "src/lib"),
       "@types": resolve(__dirname, "src/types/"),
-      "@__mocks__": resolve(__dirname, "src/__mocks__"),
       "@styles": resolve(__dirname, "src/styles"),
+      "@__mocks__": resolve(__dirname, "src/__mocks__"),
     },
   },
 });

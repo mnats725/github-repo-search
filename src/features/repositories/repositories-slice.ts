@@ -5,12 +5,12 @@ import { getPublicRepositories } from "@api/repositories-api/repositories";
 import type { Repository, RepositoryQueryParams, RepositoryResponse } from "@api/repositories-api/repositories/types";
 
 export type RepositoriesState = {
-  items: Repository[]; // Обновлено на `items`.
+  items: Repository[];
   status: "idle" | "loading" | "failed";
 };
 
 const initialState: RepositoriesState = {
-  items: [], // Обновлено на `items`.
+  items: [],
   status: "idle",
 };
 
@@ -34,7 +34,7 @@ const repositoriesSlice = createSlice({
       })
       .addCase(getRepositoriesThunk.fulfilled, (state, action) => {
         state.status = "idle";
-        state.items = action.payload; // Обновляем `items`.
+        state.items = action.payload;
       })
       .addCase(getRepositoriesThunk.rejected, (state) => {
         state.status = "failed";
