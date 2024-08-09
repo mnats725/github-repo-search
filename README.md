@@ -20,8 +20,10 @@
 Чтобы начать работу, клонируйте репозиторий и установите зависимости:
 
 ```bash
-git clone https://github.com/yourusername/github-repo-search.git
+git clone https://github.com/mnats725/github-repo-search.git
+
 cd github-repo-search
+
 yarn install
 ```
 
