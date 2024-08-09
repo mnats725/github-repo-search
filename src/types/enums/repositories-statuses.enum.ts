@@ -1,5 +1,5 @@
 export enum RepositoriesStatuses {
-  IDLE = "idle",
-  LOADING = "loading",
-  FAILED = "failed",
+  IDLE = "idle", // Состояние, когда запросы не выполняются и не ожидаются.
+  LOADING = "loading", // Состояние, когда запросы к серверу находятся в процессе выполнения.
+  FAILED = "failed", // Состояние, когда запросы к серверу завершились с ошибкой.
 }

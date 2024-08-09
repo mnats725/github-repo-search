@@ -13,7 +13,8 @@ import {
 import { TableHeader } from "./table-header";
 import { TableDetails } from "./table-details";
 
-import { getComparator } from "@lib/get-сomparator.util";
+import { getComparator } from "@lib/utils/get-сomparator.util";
+import { formatDate } from "@lib/utils/format-date.util";
 
 import type { Repository } from "@api/repositories-api/repositories/types";
 import type { MouseEvent, ChangeEvent, FC } from "react";
@@ -66,12 +67,16 @@ export const Table: FC<TableProps> = ({
             <TableBody>
               {paginatedRows.map((row) => (
                 <TableRow hover key={row.id} onClick={() => handleRowClick(row)}>
-                  <TableCell sx={{ fontSize: "18px" }}>{row.name || "N/A"}</TableCell>
-                  <TableCell sx={{ fontSize: "18px" }}>{row.language || "N/A"}</TableCell>
-                  <TableCell sx={{ fontSize: "18px" }}>{row.forks_count || "N/A"}</TableCell>
-                  <TableCell sx={{ fontSize: "18px" }}>{row.stargazers_count || "N/A"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.name || "Не указано"}</TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>{row.language || "Не указано"}</TableCell>
                   <TableCell sx={{ fontSize: "18px" }}>
-                    {row.updated_at ? new Date(row.updated_at).toLocaleDateString() : "N/A"}
+                    {row.forks_count !== undefined ? row.forks_count : "Не указано"}
+                  </TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>
+                    {row.stargazers_count !== undefined ? row.stargazers_count : "Не указано"}
+                  </TableCell>
+                  <TableCell sx={{ fontSize: "18px" }}>
+                    {row.updated_at ? formatDate(new Date(row.updated_at)) : "Не указано"}
                   </TableCell>
                 </TableRow>
               ))}

@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { RepositoriesPage } from "@components/views/repositories-page";
+import { routes } from "../../config/router/routes";
 
 export const App = () => (
   <Router>
     <Routes>
-      <Route path="/" element={<RepositoriesPage />} />
+      {routes.map((route) => (
+        <Route key={route.path} path={route.path} element={route.element} />
+      ))}
     </Routes>
   </Router>
 );

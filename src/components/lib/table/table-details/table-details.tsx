@@ -1,5 +1,9 @@
 import { Drawer, Box, Typography, Paper, Grid, IconButton, Link } from "@mui/material";
+
 import { ConditionalRender } from "@components/lib/conditional-render";
+
+import { formatDate } from "@lib/utils/format-date.util";
+
 import type { FC } from "react";
 import type { Repository } from "@api/repositories-api/repositories/types";
 
@@ -35,11 +39,12 @@ export const TableDetails: FC<RepositoryDetailsProps> = ({ drawerOpen, setDrawer
               <Typography variant="subtitle1" sx={{ fontSize: "16px" }}>
                 Полное название: {selectedRepo?.full_name || "Не указано"}
               </Typography>
-              <Typography
-                variant="subtitle1"
-                sx={{ fontSize: "16px", color: selectedRepo?.private ? "#f44336" : "#4caf50" }}
-              >
-                {selectedRepo?.private ? "Приватный" : "Публичный"}
+              <Typography variant="subtitle1" sx={{ fontSize: "16px", display: "flex", alignItems: "center" }}>
+                Статус:
+                <span style={{ margin: "0 2px" }}></span>
+                <Typography sx={{ color: selectedRepo?.private ? "#f44336" : "#4caf50" }}>
+                  {selectedRepo?.private ? "Приватный" : "Публичный"}
+                </Typography>
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -66,15 +71,15 @@ export const TableDetails: FC<RepositoryDetailsProps> = ({ drawerOpen, setDrawer
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
                   <strong>Дата создания: </strong>
-                  {selectedRepo?.created_at ? new Date(selectedRepo.created_at).toLocaleDateString() : "Не указана"}
+                  {selectedRepo?.created_at ? formatDate(new Date(selectedRepo.created_at)) : "Не указана"}
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
                   <strong>Дата обновления: </strong>
-                  {selectedRepo?.updated_at ? new Date(selectedRepo.updated_at).toLocaleDateString() : "Не указана"}
+                  {selectedRepo?.updated_at ? formatDate(new Date(selectedRepo.updated_at)) : "Не указана"}
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: "16px", fontWeight: "500" }} gutterBottom>
                   <strong>Последнее изменение: </strong>
-                  {selectedRepo?.pushed_at ? new Date(selectedRepo.pushed_at).toLocaleDateString() : "Не указана"}
+                  {selectedRepo?.pushed_at ? formatDate(new Date(selectedRepo.pushed_at)) : "Не указана"}
                 </Typography>
               </Paper>
               <Paper elevation={3} sx={{ padding: 2, marginTop: 2, backgroundColor: "#f5f5f5" }}>

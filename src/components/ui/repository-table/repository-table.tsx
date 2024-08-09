@@ -17,35 +17,31 @@ export const RepositoryTable = ({ repositories, onPageChange, onRowsPerPageChang
   const [orderBy, setOrderBy] = useState<keyof Repository>("stargazers_count");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
-  const [selectedRow, setSelectedRow] = useState<number | null>(null);
+  const [, setSelectedRow] = useState<number | null>(null);
 
   useEffect(() => {
     onPageChange(page);
-  }, [page, onPageChange]);
+  }, [page]);
 
   useEffect(() => {
     onRowsPerPageChange(rowsPerPage);
-  }, [rowsPerPage, onRowsPerPageChange]);
+  }, [rowsPerPage]);
 
   const handleRequestSort = (property: keyof Repository) => {
-    const isAscending = orderBy === property && order === "asc";
-    setOrder(isAscending ? "desc" : "asc");
+    setOrder((prevOrder) => (orderBy === property && prevOrder === "asc" ? "desc" : "asc"));
     setOrderBy(property);
   };
 
-  const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage);
-  };
+  const handleChangePage = (_: MouseEvent<HTMLButtonElement> | null, newPage: number) => setPage(newPage);
 
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     const newRowsPerPage = parseInt(event.target.value, 10);
-
     setRowsPerPage(newRowsPerPage);
     setPage(0);
   };
 
   const handleRowClick = (id: number) => {
-    setSelectedRow(selectedRow === id ? null : id);
+    setSelectedRow((prevSelectedRow) => (prevSelectedRow === id ? null : id));
   };
 
   return (

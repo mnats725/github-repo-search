@@ -8,19 +8,18 @@ import type { Repository, RepositoryQueryParams, RepositoryResponse } from "@api
 
 export type RepositoriesState = {
   items: Repository[]; // Список репозиториев, полученных из API.
-  status: RepositoriesStatuses; // Текущий статус загрузки репозиториев (например, загрузка, ошибка, завершено и т.д.).
+  status: RepositoriesStatuses; // Текущий статус загрузки репозиториев (idle, loading, failed).
 };
 
 const initialState: RepositoriesState = {
   items: [], // Изначально список репозиториев пуст.
-  status: RepositoriesStatuses.IDLE, // Изначально статус загрузки установлен в "IDLE".
+  status: RepositoriesStatuses.IDLE, // Изначально статус загрузки установлен в "IDLE" (ожидание).
 };
 
-export const getRepositoriesThunk = createAsyncThunk(
+export const getRepositoriesThunk = createAsyncThunk<Repository[], RepositoryQueryParams>(
   "repositories/fetchRepositories",
   async (params: RepositoryQueryParams) => {
     const response: RepositoryResponse = await getPublicRepositories(params);
-
     return response.items;
   }
 );
@@ -29,7 +28,7 @@ const repositoriesSlice = createSlice({
   name: "repositories",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: (builder) =>
     builder
       .addCase(getRepositoriesThunk.pending, (state) => {
         state.status = RepositoriesStatuses.LOADING;
@@ -40,8 +39,7 @@ const repositoriesSlice = createSlice({
       })
       .addCase(getRepositoriesThunk.rejected, (state) => {
         state.status = RepositoriesStatuses.FAILED;
-      });
-  },
+      }),
 });
 
 export const repositoriesReducer = repositoriesSlice.reducer;
