@@ -27,6 +27,12 @@ cd github-repo-search
 yarn install
 ```
 
+После того как установили зависимости нужно запустить проект для этого напишите следующую команду:
+
+```bash
+yarn dev
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
