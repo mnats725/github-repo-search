@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 import { AppBar, Toolbar, InputBase, Button, Box, Typography } from "@mui/material";
 
 type HeaderProps = {
@@ -11,6 +11,12 @@ export const Header = ({ onSearch }: HeaderProps) => {
   const handleSearch = () => {
     if (query.trim()) {
       onSearch(query);
+    }
+  };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Enter") {
+      handleSearch();
     }
   };
 
@@ -44,6 +50,7 @@ export const Header = ({ onSearch }: HeaderProps) => {
             inputProps={{ "aria-label": "search" }}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <Button
             variant="contained"
