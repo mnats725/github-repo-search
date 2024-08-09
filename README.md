@@ -19,13 +19,14 @@
 
 Чтобы начать работу, клонируйте репозиторий и установите зависимости:
 
-````bash
+```bash
 git clone https://github.com/yourusername/github-repo-search.git
 cd github-repo-search
 yarn install
-
+```
 
 # React + TypeScript + Vite
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -44,12 +45,12 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
-````
+});
+```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
 - Optionally add `...tseslint.configs.stylisticTypeChecked`
