@@ -1,20 +1,11 @@
 import { useState } from "react";
-import {
-  Table as MuiTable,
-  TableBody,
-  TableContainer,
-  TablePagination,
-  Paper,
-  Box,
-  TableRow,
-  TableCell,
-} from "@mui/material";
+import { Table as MuiTable, TableBody, TableContainer, TablePagination, Paper, Box } from "@mui/material";
 
 import { TableHeader } from "./table-header";
+import { TableItemRow } from "./table-item-row";
 import { TableDetails } from "./table-details";
 
 import { getComparator } from "@lib/utils/get-сomparator.util";
-import { formatDate } from "@lib/utils/format-date.util";
 
 import type { Repository } from "@api/repositories-api/repositories/types";
 import type { MouseEvent, ChangeEvent, FC } from "react";
@@ -66,19 +57,7 @@ export const Table: FC<TableProps> = ({
             <TableHeader order={order} orderBy={orderBy} onRequestSort={onRequestSort} />
             <TableBody>
               {paginatedRows.map((row) => (
-                <TableRow hover key={row.id} onClick={() => handleRowClick(row)}>
-                  <TableCell sx={{ fontSize: "18px" }}>{row.name || "Не указано"}</TableCell>
-                  <TableCell sx={{ fontSize: "18px" }}>{row.language || "Не указано"}</TableCell>
-                  <TableCell sx={{ fontSize: "18px" }}>
-                    {row.forks_count !== undefined ? row.forks_count : "Не указано"}
-                  </TableCell>
-                  <TableCell sx={{ fontSize: "18px" }}>
-                    {row.stargazers_count !== undefined ? row.stargazers_count : "Не указано"}
-                  </TableCell>
-                  <TableCell sx={{ fontSize: "18px" }}>
-                    {row.updated_at ? formatDate(new Date(row.updated_at)) : "Не указано"}
-                  </TableCell>
-                </TableRow>
+                <TableItemRow key={row.id} row={row} onRowClick={handleRowClick} />
               ))}
             </TableBody>
           </MuiTable>
