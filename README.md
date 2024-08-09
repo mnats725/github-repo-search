@@ -1,5 +1,31 @@
-# React + TypeScript + Vite
+# github-repo-search
 
+`github-repo-search` — это современное веб-приложение, построенное с использованием React, TypeScript и Vite. Приложение позволяет пользователям искать репозитории на GitHub и просматривать их детали.
+
+## Содержание
+
+- [Особенности](#особенности)
+- [Установка](#установка)
+
+## Особенности
+
+- Поиск репозиториев на GitHub по имени
+- Просмотр деталей репозиториев, включая звезды, форки и вопросы
+- Адаптивный и удобный интерфейс
+- Построено с использованием TypeScript для проверки типов
+- Быстрая разработка и сборка с помощью Vite
+
+## Установка
+
+Чтобы начать работу, клонируйте репозиторий и установите зависимости:
+
+````bash
+git clone https://github.com/yourusername/github-repo-search.git
+cd github-repo-search
+yarn install
+
+
+# React + TypeScript + Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -23,7 +49,7 @@ export default tseslint.config({
     },
   },
 })
-```
+````
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
 - Optionally add `...tseslint.configs.stylisticTypeChecked`
@@ -31,11 +57,11 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from "eslint-plugin-react";
 
 export default tseslint.config({
   // Set the react version
-  settings: { react: { version: '18.3' } },
+  settings: { react: { version: "18.3" } },
   plugins: {
     // Add the react plugin
     react,
@@ -44,7 +70,7 @@ export default tseslint.config({
     // other rules...
     // Enable its recommended rules
     ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
+    ...react.configs["jsx-runtime"].rules,
   },
-})
+});
 ```
